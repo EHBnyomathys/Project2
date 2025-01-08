@@ -12,17 +12,30 @@ exports.getUserById = async (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
-    if (!req.body.name || !req.body.email) {
-        return res.status(400).json({ message: 'Name and email are required' });
-    }
-
     try {
-        const user = await User.create(req.body);
-        res.json(user);
-    } catch (err) {
-        res.status(500).json({ message: 'Error creating user', error: err });
+        const { name, email, phone, start_date, end_date } = req.body;
+
+        const newUser = await User.create({
+            name,
+            email,
+            phone,
+            start_date,
+            end_date
+        });
+
+        res.status(201).json({
+            message: "User created successfully",
+            user: newUser
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Error creating user",
+            error: error
+        });
     }
 };
+
 
 exports.updateUser = async (req, res) => {
     if (!req.body.name || !req.body.email) {

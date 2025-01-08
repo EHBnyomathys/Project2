@@ -1,18 +1,22 @@
 const { Sequelize } = require('sequelize');
 const config = require('../config/config.json');
 
+const env = process.env.NODE_ENV || 'development';
+const dbConfig = config[env];
+
 const sequelize = new Sequelize(
-    config.development.database,
-    config.development.username,
-    config.development.password,
+    dbConfig.database,
+    dbConfig.username,
+    dbConfig.password,
     {
-        host: config.development.host,
-        dialect: config.development.dialect
+        host: dbConfig.host,
+        dialect: dbConfig.dialect,
+        logging: false
     }
 );
 
 sequelize.authenticate()
     .then(() => console.log('Database connected'))
-    .catch(err => console.error('Error:', err));
+    .catch(err => console.error('Database connection error:', err));
 
 module.exports = sequelize;
