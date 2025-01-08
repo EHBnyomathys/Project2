@@ -34,6 +34,13 @@ app.get('/', (req, res) => {
             <li><strong>PUT</strong> - /api/categories/:id → Update een categorie op basis van ID</li>
             <li><strong>DELETE</strong> - /api/categories/:id → Verwijder een categorie op basis van ID</li>
         </ul>
+
+        <h3>Extra Functionaliteiten</h3>
+        <ul>
+            <li><strong>Zoeken op Meerdere Velden:</strong> Vind eenvoudig gebruikers door te zoeken op zowel "naam" als "e-mail" met behulp van de zoekparameter "?search=term". Dit maakt gerichte zoekopdrachten mogelijk voor efficiënter resultaatbeheer.</li>
+            <li><strong>Resultaten Sorteren:</strong> Sorteer gebruikers op specifieke velden zoals "naam" of "datum van aanmaak" met parameters zoals "?sortBy=name&sortOrder=asc". Hierdoor krijg je snel inzicht in de gegevens in de gewenste volgorde.</li>
+            <li><strong>Geavanceerde Validatie:</strong> Gegevens worden zorgvuldig gecontroleerd, inclusief datumvalidatie (bijv. "end_date" mag niet vóór "start_date" liggen) en telefoonnummerformaten (bijv. "+32 444 44 44 44").</li>
+        </ul>
         <h3>Algemene Informatie</h3>
         <ul>
             <li><strong>Serverstatus:</strong> Draaiend op poort ${process.env.PORT || 3000}</li>
