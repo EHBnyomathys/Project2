@@ -2,9 +2,10 @@ const { Op } = require('sequelize');
 const User = require('../models/user');
 
 exports.getAllUsers = async (req, res) => {
-    const { search } = req.query;
+    const { search, sortBy, sortOrder } = req.query;
 
     let whereClause = {};
+    let orderClause = [];
 
     if (search) {
         whereClause = {
@@ -15,9 +16,17 @@ exports.getAllUsers = async (req, res) => {
         };
     }
 
+    if (sortBy) {
+        orderClause.push([
+            sortBy,
+            sortOrder && sortOrder.toLowerCase() === 'desc' ? 'DESC' : 'ASC'
+        ]);
+    }
+
     try {
         const users = await User.findAll({
-            where: whereClause
+            where: whereClause,
+            order: orderClause
         });
         res.json(users);
     } catch (error) {
