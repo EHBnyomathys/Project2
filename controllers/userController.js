@@ -1,10 +1,34 @@
-const User = require('../models/user');
 const { Op } = require('sequelize');
+const User = require('../models/user');
 
 exports.getAllUsers = async (req, res) => {
-    const users = await User.findAll();
-    res.json(users);
+    const { search } = req.query;
+
+    let whereClause = {};
+
+    if (search) {
+        whereClause = {
+            [Op.or]: [
+                { name: { [Op.like]: `%${search}%` } },
+                { email: { [Op.like]: `%${search}%` } }
+            ]
+        };
+    }
+
+    try {
+        const users = await User.findAll({
+            where: whereClause
+        });
+        res.json(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Error fetching users",
+            error: error
+        });
+    }
 };
+
 
 exports.getUserById = async (req, res) => {
     const user = await User.findByPk(req.params.id);
