@@ -72,10 +72,4 @@ Om tests uit te voeren, gebruik het volgende commando:
 npm test
 ```
 
-## Licentie
-
-Dit project is gelicenseerd onder de MIT-licentie. Zie het bestand `LICENSE` voor meer informatie.
-
----
-
 *Gecreëerd door [Nyo Mathys](https://github.com/EHBnyomathys).*
