@@ -24,8 +24,8 @@ Voordat je begint, zorg ervoor dat je de volgende zaken hebt geïnstalleerd:
 1. **Clone de repository**:
 
    ```bash
-   git clone https://github.com/jouw-gebruikersnaam/crud-api.git
-   cd crud-api
+   git clone https://github.com/EHBnyomathys/Project2.git
+   cd Project2
    ```
 
 2. **Installeer afhankelijkheden**:
