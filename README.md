@@ -49,10 +49,11 @@ CREATE DATABASE project2;
 GRANT ALL PRIVILEGES ON project2.* TO 'project2_user'@'localhost';
 FLUSH PRIVILEGES;
 ```
-### 5. Database synchroniseren
-- Synchroniseer de database en maak de benodigde tabellen aan:
+### 5. Database synchroniseren en seeders uitvoeren
+- Synchroniseer de database en voeg seed-data toe:
 ```bash
 node -e "require('./config/database').sync({ alter: true })"
+npx sequelize-cli db:seed:all
 ```
 ### 6. Server starten
 - start de server:
